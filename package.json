@@ -1,0 +1,25 @@
+{
+  "name": "request-rectifier",
+  "description": "Modification of HTTP Requests",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "request",
+    "typescript"
+  ],
+  "author": "Bruno Anderson Chen <mosoc@colle.co>",
+  "license": "ISC",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+
+  },
+  "dependencies": {
+
+  }
+}

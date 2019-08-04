@@ -1,0 +1,23 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode
+.idea
+*.iml
+
+# Logs
+logs
+*.log
+
+# Coverage
+coverage
+
+# Dependency directory
+node_modules
+
+# Compiled output
+lib/
+dist/
+build/
