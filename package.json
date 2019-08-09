@@ -15,11 +15,14 @@
   "author": "Bruno Anderson Chen <mosoc@colle.co>",
   "license": "ISC",
   "readmeFilename": "README.md",
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^12.6.9",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.3"
   },
-  "dependencies": {}
+  "prettier": {
+    "singleQuote": true
+  }
 }
