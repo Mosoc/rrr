@@ -3,6 +3,7 @@
   "rules": {
     "interface-name": [true, "never-prefix"],
     "no-implicit-dependencies": [true, "dev"],
+    "no-unused-expression": false,
     "no-var-keyword": true,
     "no-parameter-reassignment": true,
     "typedef": [true, "call-signature"]
