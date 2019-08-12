@@ -2,6 +2,13 @@
   "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
     "interface-name": [true, "never-prefix"],
+    "object-literal-sort-keys": [
+      true,
+      "ignore-case",
+      "locale-compare",
+      "match-declaration-order",
+      "shorthand-first"
+    ],
     "no-implicit-dependencies": [true, "dev"],
     "no-unused-expression": false,
     "no-var-keyword": true,
