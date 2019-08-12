@@ -1,6 +1,7 @@
-import { HttpRequestObject } from '../types';
+import { HttpRequestMethod, HttpRequestObject} from '../types';
 
-const modifyPath = (input: HttpRequestObject): HttpRequestObject => {
+const modifyPath = (method: HttpRequestMethod) => (input: HttpRequestObject): HttpRequestObject => {
+  if(input.method !== method ) { return input; }
   return input;
 };
 

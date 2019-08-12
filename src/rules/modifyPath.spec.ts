@@ -4,7 +4,7 @@ import modifyPath from './modifyPath';
 
 import 'mocha';
 
-// const method = 'GET';
+const method = 'GET';
 // const selectedPath = '/shopback/resource';
 const distinationPath = '/shopback/static/assets';
 
@@ -29,20 +29,20 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
 describe('Modify Path', () => {
   it('should modify the path', () => {
     const origin = requestWithMathedPath;
-    const result = modifyPath(origin);
+    const result = modifyPath(method)(origin);
     const url = new URL(result.url);
     expect(url.pathname).to.equal(distinationPath);
   });
 
   it('should bypass the object with unmatched path', () => {
     const origin = requestWithUnmathedPath;
-    const result = modifyPath(origin);
+    const result = modifyPath(method)(origin);
     expect(result).to.deep.equal(origin);
   });
 
   it('should the object when using different', () => {
     const origin = requestWithMathedPathButDifferentMethod;
-    const result = modifyPath(origin);
+    const result = modifyPath(method)(origin);
     expect(result).to.deep.equal(origin);
   });
 });
