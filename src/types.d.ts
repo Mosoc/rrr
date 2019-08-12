@@ -1,7 +1,18 @@
-export type HttpRequestMethod = '*' | 'ALL' | 'CONNECT' | 'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'PATCH' | 'POST' | 'PUT' | 'TRACE'
+export type HttpRequestMethod =
+  | '*'
+  | 'ALL'
+  | 'CONNECT'
+  | 'DELETE'
+  | 'GET'
+  | 'HEAD'
+  | 'OPTIONS'
+  | 'PATCH'
+  | 'POST'
+  | 'PUT'
+  | 'TRACE';
 
 export interface HttpRequestHeaders {
-  'Accept'?: string;
+  Accept?: string;
   'Accept-language'?: string;
   'Accept-patch'?: string;
   'Accept-ranges'?: string;
@@ -11,12 +22,12 @@ export interface HttpRequestHeaders {
   'Access-control-allow-origin'?: string;
   'Access-control-expose-headers'?: string;
   'Access-control-max-age'?: string;
-  'Age'?: string;
-  'Allow'?: string;
+  Age?: string;
+  Allow?: string;
   'Alt-svc'?: string;
-  'Authorization'?: string;
+  Authorization?: string;
   'Cache-control'?: string;
-  'Connection'?: string;
+  Connection?: string;
   'Content-disposition'?: string;
   'Content-encoding'?: string;
   'Content-language'?: string;
@@ -24,42 +35,42 @@ export interface HttpRequestHeaders {
   'Content-location'?: string;
   'Content-range'?: string;
   'Content-type'?: string;
-  'Cookie'?: string;
-  'Date'?: string;
-  'Expect'?: string;
-  'Expires'?: string;
-  'Forwarded'?: string;
-  'From'?: string;
-  'Host'?: string;
+  Cookie?: string;
+  Date?: string;
+  Expect?: string;
+  Expires?: string;
+  Forwarded?: string;
+  From?: string;
+  Host?: string;
   'If-match'?: string;
   'If-modified-since'?: string;
   'If-none-match'?: string;
   'If-unmodified-since'?: string;
   'Last-modified'?: string;
-  'Location'?: string;
-  'Pragma'?: string;
+  Location?: string;
+  Pragma?: string;
   'Proxy-authenticate'?: string;
   'Proxy-authorization'?: string;
   'Public-key-pins'?: string;
-  'Range'?: string;
-  'Referer'?: string;
+  Range?: string;
+  Referer?: string;
   'Retry-after'?: string;
   'Set-cookie'?: string[];
   'Strict-transport-security'?: string;
-  'Tk'?: string;
-  'Trailer'?: string;
+  Tk?: string;
+  Trailer?: string;
   'Transfer-encoding'?: string;
-  'Upgrade'?: string;
+  Upgrade?: string;
   'User-agent'?: string;
-  'Vary'?: string;
-  'Via'?: string;
-  'Warning'?: string;
+  Vary?: string;
+  Via?: string;
+  Warning?: string;
   'WWW-authenticate'?: string;
   [Header: string]: string | string[] | undefined;
 }
 
 export interface HttpRequestObject {
-  url: string
-  method: HttpRequestMethod
-  headers: HttpRequestHeaders
+  url: string;
+  method: HttpRequestMethod;
+  headers: HttpRequestHeaders;
 }
