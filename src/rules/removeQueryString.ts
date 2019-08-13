@@ -1,3 +1,10 @@
-import { HttpRequestObject } from '../types';
-
-export default (input: HttpRequestObject):HttpRequestObject => (input);
+import { HttpRequestMethod, HttpRequestObject } from '../types';
+const removeQueryString = (methods: HttpRequestMethod[]) => (
+  input: HttpRequestObject
+): HttpRequestObject => {
+  if (!methods.includes(input.method)) {
+    return input;
+  }
+  return input;
+};
+export default removeQueryString;
