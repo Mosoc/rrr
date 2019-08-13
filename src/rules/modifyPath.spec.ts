@@ -26,23 +26,25 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
   headers: {}
 };
 
+const modifyPathByExample = modifyPath(method, selectedPath, distinationPath);
+
 describe('Modify Path', () => {
   it('should modify the path', () => {
     const origin = requestWithMathedPath;
-    const result = modifyPath(method, selectedPath, distinationPath)(origin);
+    const result = modifyPathByExample(origin);
     const url = new URL(result.url);
     expect(url.pathname).to.equal(distinationPath);
   });
 
   it('should bypass the object with unmatched path', () => {
     const origin = requestWithUnmathedPath;
-    const result = modifyPath(method, selectedPath, distinationPath)(origin);
+    const result = modifyPathByExample(origin);
     expect(result).to.deep.equal(origin);
   });
 
   it('should the object when using different', () => {
     const origin = requestWithMathedPathButDifferentMethod;
-    const result = modifyPath(method, selectedPath, distinationPath)(origin);
+    const result = modifyPathByExample(origin);
     expect(result).to.deep.equal(origin);
   });
 });
