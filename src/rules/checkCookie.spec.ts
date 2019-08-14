@@ -38,13 +38,13 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
 const checkCookieByExample = checkCookie(methods, path, cookieRequired);
 
 describe('Check Cookie', () => {
-  it('passed', () => {
+  it('passed with required cookie', () => {
     const origin = requestWithCookieRequired;
     const result = checkCookieByExample(origin);
     expect(result).to.deep.equal(origin);
   });
 
-  it('failed', () => {
+  it('failed without required cookie', () => {
     const origin = requestWithoutCookieRequired;
     expect(() => checkCookieByExample(origin)).to.throw();
   });
