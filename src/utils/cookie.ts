@@ -1,3 +1,5 @@
+// This is code snippet from theodorejb/es-cookie with fixing coding style by tslint and prettier
+
 export const parse = (cookieString: string): { [name: string]: string } => {
   const result: { [name: string]: string } = {};
   const cookies = cookieString ? cookieString.split('; ') : [];
