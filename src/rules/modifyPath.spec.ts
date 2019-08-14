@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import { HttpRequestObject } from '../types';
+import { HttpRequestMethod, HttpRequestObject } from '../types';
 import modifyPath from './modifyPath';
 
 import 'mocha';
 
-const method = 'GET';
+const methods:HttpRequestMethod[] = ['GET'];
 const selectedPath = '/shopback/resource';
 const distinationPath = '/shopback/static/assets';
 
@@ -26,7 +26,7 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
   headers: {}
 };
 
-const modifyPathByExample = modifyPath(method, selectedPath, distinationPath);
+const modifyPathByExample = modifyPath(methods, selectedPath, distinationPath);
 
 describe('Modify Path', () => {
   it('should modify the path', () => {
