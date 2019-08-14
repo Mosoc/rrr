@@ -7,17 +7,17 @@ const checkCookie = (
   cookieRequired: string
 ) => (input: HttpRequestObject): HttpRequestObject => {
   if (!methods.includes(input.method)) {
-     return input;
+    return input;
   }
 
   if (path !== new URL(input.url).pathname) {
-     return input;
+    return input;
   }
 
   if (input.headers.Cookie) {
     const cookies = Cookies.parse(input.headers.Cookie);
-    if(!cookies.hasOwnProperty(cookieRequired)) {
-      throw new Error(`${cookieRequired} is not in cookie header.`)
+    if (!cookies.hasOwnProperty(cookieRequired)) {
+      throw new Error(`${cookieRequired} is not in cookie header.`);
     }
   } else {
     throw new Error('Cookie header is not exist.');

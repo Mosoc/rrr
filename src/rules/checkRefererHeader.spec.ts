@@ -31,7 +31,7 @@ const requestWithWrongRefererHeaderAndDifferentMethod: HttpRequestObject = {
   }
 };
 
-const checkRefererHeaderByExample = checkRefererHeader(methods, hostname)
+const checkRefererHeaderByExample = checkRefererHeader(methods, hostname);
 
 describe('Check Referer Header', () => {
   it('passed with correct referer', () => {

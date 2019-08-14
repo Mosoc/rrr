@@ -22,4 +22,4 @@ export const parse = (cookieString: string): { [name: string]: string } => {
   }
 
   return result;
-}
+};

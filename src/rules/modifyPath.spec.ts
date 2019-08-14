@@ -4,7 +4,7 @@ import modifyPath from './modifyPath';
 
 import 'mocha';
 
-const methods:HttpRequestMethod[] = ['GET'];
+const methods: HttpRequestMethod[] = ['GET'];
 const selectedPath = '/shopback/resource';
 const distinationPath = '/shopback/static/assets';
 
