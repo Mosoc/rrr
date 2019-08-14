@@ -1,6 +1,4 @@
 export type HttpRequestMethod =
-  | '*'
-  | 'ALL'
   | 'CONNECT'
   | 'DELETE'
   | 'GET'
