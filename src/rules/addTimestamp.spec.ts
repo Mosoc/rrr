@@ -19,7 +19,7 @@ const addTimestampByExample = addTimestamp(methods, timestampName);
 const checkTimestampFormat = (timestamp: any) => {
   if (timestamp && typeof timestamp === 'string') {
     // except timestamp === ''
-    const ISO8601:RegExp = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/;
+    const ISO8601: RegExp = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/;
     // https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetimes
     if (!ISO8601.test(timestamp)) {
       throw new TypeError('Timestamp should use ISO-8601:2004.');

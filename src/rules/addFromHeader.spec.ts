@@ -46,9 +46,7 @@ describe('Add From Header', () => {
     const result = addFromHeaderByExample(origin);
     expect(result.headers.hasOwnProperty('From')).to.be.true;
     expect(result.headers.From).to.a('string');
-    expect(() =>
-      checkFromHeaderFormat(result.headers.From)
-    ).to.not.throw();
+    expect(() => checkFromHeaderFormat(result.headers.From)).to.not.throw();
   });
 
   it('should bypass the object with unmatched path', () => {

@@ -21,7 +21,9 @@ const checkCookie = (
       throw new Error(`${cookieRequired} is not in cookie header.`);
     } else {
       if (value && value !== cookies[cookieRequired]) {
-        throw new Error(`${cookieRequired} value is incorrect(${cookies[cookieRequired]}).`);
+        throw new Error(
+          `${cookieRequired} value is incorrect(${cookies[cookieRequired]}).`
+        );
       }
     }
   } else {
