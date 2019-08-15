@@ -5,6 +5,10 @@ const removeQueryString = (methods: HttpRequestMethod[]) => (
   if (!methods.includes(input.method)) {
     return input;
   }
-  return input;
+
+  const url = new URL(input.url);
+  url.search = '';
+  const output = { ...input, url: url.href };
+  return output;
 };
 export default removeQueryString;
