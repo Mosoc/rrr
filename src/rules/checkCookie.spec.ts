@@ -7,14 +7,24 @@ import 'mocha';
 const path = '/shopback/me';
 const methods: HttpRequestMethod[] = ['GET'];
 const cookieRequired = 'sbcookie';
+const value = 'test';
 
 const requestWithCookieRequired: HttpRequestObject = {
   url: 'http://www.shopback.com/shopback/me',
   method: 'GET',
   headers: {
-    Cookie: `${cookieRequired}=test;`
+    Cookie: `${cookieRequired}=test`
   }
 };
+
+const requestWithCookieRequiredButIncorrectValue: HttpRequestObject = {
+  url: 'http://www.shopback.com/shopback/me',
+  method: 'GET',
+  headers: {
+    Cookie: `${cookieRequired}=stage`
+  }
+};
+
 const requestWithoutCookieRequired: HttpRequestObject = {
   url: 'http://www.shopback.com/shopback/me',
   method: 'GET',
@@ -36,6 +46,12 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
 };
 
 const checkCookieByExample = checkCookie(methods, path, cookieRequired);
+const checkCookieByExampleWithSpecificValue = checkCookie(
+  methods,
+  path,
+  cookieRequired,
+  value
+);
 
 describe('Check Cookie', () => {
   it('passed with required cookie', () => {
@@ -47,6 +63,17 @@ describe('Check Cookie', () => {
   it('failed without required cookie', () => {
     const origin = requestWithoutCookieRequired;
     expect(() => checkCookieByExample(origin)).to.throw();
+  });
+
+  it('passed with required cookie and correct value', () => {
+    const origin = requestWithCookieRequired;
+    const result = checkCookieByExampleWithSpecificValue(origin);
+    expect(result).to.deep.equal(origin);
+  });
+
+  it('failed with required cookie but incorrect value', () => {
+    const origin = requestWithCookieRequiredButIncorrectValue;
+    expect(() => checkCookieByExampleWithSpecificValue(origin)).to.throw();
   });
 
   it('should bypass the object with unmatched path', () => {
