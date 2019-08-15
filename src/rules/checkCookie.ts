@@ -1,3 +1,4 @@
+import micromatch from 'micromatch';
 import { HttpRequestMethod, HttpRequestObject } from '../types';
 import * as Cookies from '../utils/cookie';
 
@@ -7,11 +8,14 @@ const checkCookie = (
   cookieRequired: string,
   value?: string
 ) => (input: HttpRequestObject): HttpRequestObject => {
+  const isMatch = micromatch.matcher(path);
+  const url = new URL(input.url);
+
   if (!methods.includes(input.method)) {
     return input;
   }
 
-  if (path !== new URL(input.url).pathname) {
+  if (!isMatch(url.pathname)) {
     return input;
   }
 
@@ -22,7 +26,7 @@ const checkCookie = (
     } else {
       if (value && value !== cookies[cookieRequired]) {
         throw new Error(
-          `${cookieRequired} value is incorrect(${cookies[cookieRequired]}).`
+          `${cookieRequired} value is incorrect.`
         );
       }
     }
