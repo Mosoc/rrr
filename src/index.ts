@@ -1,1 +1,1 @@
-export * from './valid';
+export default () => ({});
