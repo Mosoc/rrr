@@ -26,9 +26,12 @@
   "author": "Bruno Anderson Chen <mosoc@colle.co>",
   "license": "ISC",
   "readmeFilename": "README.md",
-  "dependencies": {},
+  "dependencies": {
+    "micromatch": "^4.0.2"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.0",
+    "@types/micromatch": "^3.1.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.9",
     "chai": "^4.2.0",
