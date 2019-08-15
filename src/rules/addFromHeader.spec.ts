@@ -14,6 +14,14 @@ const requestWithMathedPath: HttpRequestObject = {
   headers: {}
 };
 
+const requestWithMathedPathAndValueInFromHeader: HttpRequestObject = {
+  url: 'http://www.shopback.com/shopback/api/abc',
+  method: 'GET',
+  headers: {
+    From: 'hi@shopbak.com'
+  }
+};
+
 const requestWithUnmathedPath: HttpRequestObject = {
   url: 'http://www.shopback.com/shopback/ipa',
   method: 'GET',
@@ -27,6 +35,12 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
 };
 
 const addFromHeaderByExample = addFromHeader(methods, path, value);
+const addFromHeaderByExampleWithOverwrite = addFromHeader(
+  methods,
+  path,
+  value,
+  true
+);
 
 const checkFromHeaderFormat = (fromValue: any) => {
   const emailReg: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -41,12 +55,30 @@ const checkFromHeaderFormat = (fromValue: any) => {
 };
 
 describe('Add From Header', () => {
-  it('check form header format', () => {
+  it('add and check form header format', () => {
     const origin = requestWithMathedPath;
     const result = addFromHeaderByExample(origin);
     expect(result.headers.hasOwnProperty('From')).to.be.true;
     expect(result.headers.From).to.a('string');
     expect(() => checkFromHeaderFormat(result.headers.From)).to.not.throw();
+  });
+
+  it('should bypass the object with existing from header without overwrite flag', () => {
+    const origin = requestWithMathedPathAndValueInFromHeader;
+    const result = addFromHeaderByExample(origin);
+    expect(result.headers.hasOwnProperty('From')).to.be.true;
+    expect(result.headers.From).to.a('string');
+    expect(() => checkFromHeaderFormat(result.headers.From)).to.not.throw();
+    expect(result).to.deep.equal(origin);
+  });
+
+  it('should overwrite the from header with overwrite flag', () => {
+    const origin = requestWithMathedPathAndValueInFromHeader;
+    const result = addFromHeaderByExampleWithOverwrite(origin);
+    expect(result.headers.hasOwnProperty('From')).to.be.true;
+    expect(result.headers.From).to.a('string');
+    expect(() => checkFromHeaderFormat(result.headers.From)).to.not.throw();
+    expect(result).to.not.equal(origin);
   });
 
   it('should bypass the object with unmatched path', () => {

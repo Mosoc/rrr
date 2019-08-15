@@ -14,8 +14,20 @@ const requestWithoutTimestamp: HttpRequestObject = {
   headers: {}
 };
 
-const addTimestampByExample = addTimestamp(methods, timestampName);
+const requestWithTimestamp: HttpRequestObject = {
+  url: 'http://www.shopback.com/shopback/resource',
+  method: 'GET',
+  headers: {
+    'X-SHOPBACK-TIMESTAMP': '2019-08-15T12:17:41.731Z'
+  }
+};
 
+const addTimestampByExample = addTimestamp(methods, timestampName);
+const addTimestampByExampleWithOverwrite = addTimestamp(
+  methods,
+  timestampName,
+  true
+);
 const checkTimestampFormat = (timestamp: any) => {
   if (timestamp && typeof timestamp === 'string') {
     // except timestamp === ''
@@ -29,7 +41,6 @@ const checkTimestampFormat = (timestamp: any) => {
   }
 };
 
-// expect(() => new Date(typeof result.headers[timestampName] === 'string' ? result.headers[timestampName] : 'Invalid format')).to.not.throw();
 describe('Add Timestamp', () => {
   it('check timestamp format', () => {
     const origin = requestWithoutTimestamp;
@@ -39,5 +50,27 @@ describe('Add Timestamp', () => {
     expect(() =>
       checkTimestampFormat(result.headers[timestampName])
     ).to.not.throw();
+  });
+
+  it('exist timestamp without overwrite', () => {
+    const origin = requestWithTimestamp;
+    const result = addTimestampByExample(origin);
+    expect(result.headers.hasOwnProperty(timestampName)).to.be.true;
+    expect(result.headers[timestampName]).to.a('string');
+    expect(() =>
+      checkTimestampFormat(result.headers[timestampName])
+    ).to.not.throw();
+    expect(result).to.deep.equal(origin);
+  });
+
+  it('exist timestamp without overwrite', () => {
+    const origin = requestWithTimestamp;
+    const result = addTimestampByExampleWithOverwrite(origin);
+    expect(result.headers.hasOwnProperty(timestampName)).to.be.true;
+    expect(result.headers[timestampName]).to.a('string');
+    expect(() =>
+      checkTimestampFormat(result.headers[timestampName])
+    ).to.not.throw();
+    expect(result).to.not.equal(origin);
   });
 });

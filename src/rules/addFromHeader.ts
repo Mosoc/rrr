@@ -4,7 +4,8 @@ import { HttpRequestMethod, HttpRequestObject } from '../types';
 const addTimestamp = (
   methods: HttpRequestMethod[],
   path: string,
-  value: string
+  value: string,
+  overwrite: boolean = false
 ) => (input: HttpRequestObject): HttpRequestObject => {
   const isMatch = micromatch.matcher(path);
   const url = new URL(input.url);
@@ -14,6 +15,9 @@ const addTimestamp = (
   }
 
   if (!isMatch(url.pathname)) {
+    return input;
+  }
+  if (!overwrite && input.headers.hasOwnProperty('From')) {
     return input;
   }
 
