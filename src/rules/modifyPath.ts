@@ -1,3 +1,4 @@
+import micromatch from 'micromatch';
 import { HttpRequestMethod, HttpRequestObject } from '../types';
 
 const modifyPath = (
@@ -8,13 +9,14 @@ const modifyPath = (
   if (selectedPath === distinationPath) {
     return input;
   }
+  const isMatch = micromatch.matcher(selectedPath);
 
   if (!methods.includes(input.method)) {
     return input;
   }
   const url = new URL(input.url);
 
-  if (url.pathname !== selectedPath) {
+  if (!isMatch(url.pathname)) {
     return input;
   }
 
