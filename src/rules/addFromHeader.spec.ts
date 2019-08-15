@@ -33,21 +33,21 @@ const checkFromHeaderFormat = (fromValue: any) => {
   // Only fit RFC 5322
   if (fromValue && typeof fromValue === 'string') {
     if (!emailReg.test(fromValue)) {
-      throw new TypeError('Form header should be an email string.');
+      throw new TypeError('From header should be an email string.');
     }
   } else {
-    throw new TypeError('Form header should be an email string.');
+    throw new TypeError('From header should be an email string.');
   }
 };
 
-describe('Add Timestamp', () => {
-  it('check timestamp format', () => {
+describe('Add From Header', () => {
+  it('check form header format', () => {
     const origin = requestWithMathedPath;
     const result = addFromHeaderByExample(origin);
-    expect(result.headers.hasOwnProperty('Form')).to.be.true;
-    expect(result.headers.Form).to.a('string');
+    expect(result.headers.hasOwnProperty('From')).to.be.true;
+    expect(result.headers.From).to.a('string');
     expect(() =>
-      checkFromHeaderFormat('result.headers[timestampName]')
+      checkFromHeaderFormat(result.headers.From)
     ).to.not.throw();
   });
 
