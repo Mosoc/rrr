@@ -12,7 +12,7 @@ export const allMethods: HttpRequestMethod[] = [
   'TRACE'
 ];
 
-export const requestHeaderTemplate: HttpRequestObject = {
+export const requestObjectTemplate: HttpRequestObject = {
   url: '',
   method: 'GET',
   headers: {}
