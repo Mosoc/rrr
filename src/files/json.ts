@@ -1,6 +1,9 @@
 // tslint:disable: no-console
 // command: ts-node src/files/json.ts
 import fs from 'fs-extra';
+import { requestObjectTemplate } from '../constants';
+import defaultRulesConfiguration from '../rules';
+
 fs.readFile(
   './test-file/source.json',
   'utf-8',
@@ -9,33 +12,23 @@ fs.readFile(
       console.log(error);
     }
 
-    console.log(data);
     const dataObject = JSON.parse(data);
-    console.log(dataObject);
 
     // Almost the same as writeFile, except that if the directory does not exist, it's created.
-    fs.outputFile('./test-file/copy-dist.json', data, () => {
+    fs.outputFile('./test-file/output/dist.json', data, () => {
+      console.log('Copy paste')
       return;
     });
 
-    dataObject.url = 'https://www.shopback.com/shopback/me';
+    const modifiedDataObject = defaultRulesConfiguration({...requestObjectTemplate, ...dataObject});
 
     fs.outputFile(
-      './test-file/copy-modified.json',
-      JSON.stringify(dataObject, null, 2),
+      './test-file/output/modified.json',
+      JSON.stringify(modifiedDataObject, null, 2),
       () => {
+        console.log('Modified by rules')
         return;
       }
     );
-    fs.outputJSON('./test-file/copy-modified-json.json', dataObject, {
-      spaces: 2
-    });
   }
 );
-
-fs.readJson('./test-file/source.json', (error: Error, packageObj: any) => {
-  if (error) {
-    console.log(error);
-  }
-  console.log(packageObj.name);
-});
