@@ -3,8 +3,8 @@ import handleJSON from './json'
 
 import 'mocha';
 
-const inputFilePath = './test-file/source.json';
-const outputFilePath = './test-file/output/modified.json';
+const inputFilePath = './test-files/source.json';
+const outputFilePath = './test-files/output/modified.json';
 
 
 describe('Add Timestamp', () => {

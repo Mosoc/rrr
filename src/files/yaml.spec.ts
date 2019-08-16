@@ -3,8 +3,8 @@ import handleYAML from './yaml'
 
 import 'mocha';
 
-const inputFilePath = './test-file/source.yaml';
-const outputFilePath = './test-file/output/modified.yaml';
+const inputFilePath = './test-files/source.yaml';
+const outputFilePath = './test-files/output/modified.yaml';
 
 
 describe('Add Timestamp', () => {
