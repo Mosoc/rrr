@@ -1,0 +1,7 @@
+url: http://www.shopback.com/shopback/me
+method: GET
+headers:
+  Cookie: sbcookie=test; area=taiwan
+  Host: www.shopback.com
+  Referer: http://www.shopback.com/
+  X-SHOPBACK-TIMESTAMP: 2019-08-16T04:15:56.234Z
