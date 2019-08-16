@@ -3,13 +3,19 @@
 import fs from 'fs-extra';
 import { requestObjectTemplate } from '../constants';
 import defaultRulesConfiguration from '../rules';
-const handleJSON = (inputFilePath: string, outputFilePath: string) =>
+const handleJSON = (
+  inputFilePath: string,
+  outputFilePath: string,
+  callback: (obj: { error?: any }) => any = ({ error }) => {
+    console.log(error);
+  }
+) =>
   fs.readFile(
     inputFilePath,
     'utf-8',
     (error: NodeJS.ErrnoException, data: string) => {
       if (error) {
-        console.log(error);
+        callback({ error });
       }
 
       const dataObject = JSON.parse(data);
@@ -23,13 +29,14 @@ const handleJSON = (inputFilePath: string, outputFilePath: string) =>
       fs.outputFile(
         outputFilePath,
         JSON.stringify(modifiedDataObject, null, 2),
-        () => {
-          console.log('Modified by rules');
+        (err: Error) => {
+          if (err) {
+            callback({ error: err });
+          }
           return;
         }
       );
     }
   );
 
-  export default handleJSON;
-  
+export default handleJSON;
