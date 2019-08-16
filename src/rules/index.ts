@@ -41,3 +41,13 @@ const defaultRulesConfiguration = (
   )(input);
 
 export default defaultRulesConfiguration;
+export {
+  addFromHeader,
+  addTimestamp,
+  checkContentTypeHeader,
+  checkCustomHeader,
+  checkHostHeader,
+  checkRefererHeader,
+  modifyPath,
+  removeQueryString
+};
