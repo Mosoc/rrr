@@ -16,17 +16,20 @@ fs.readFile(
 
     // Almost the same as writeFile, except that if the directory does not exist, it's created.
     fs.outputFile('./test-file/output/dist.json', data, () => {
-      console.log('Copy paste')
+      console.log('Copy paste');
       return;
     });
 
-    const modifiedDataObject = defaultRulesConfiguration({...requestObjectTemplate, ...dataObject});
+    const modifiedDataObject = defaultRulesConfiguration({
+      ...requestObjectTemplate,
+      ...dataObject
+    });
 
     fs.outputFile(
       './test-file/output/modified.json',
       JSON.stringify(modifiedDataObject, null, 2),
       () => {
-        console.log('Modified by rules')
+        console.log('Modified by rules');
         return;
       }
     );

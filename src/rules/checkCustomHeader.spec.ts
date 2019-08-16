@@ -40,7 +40,11 @@ const requestWithWrongCustomHeader: HttpRequestObject = {
 };
 
 const checkCustomHeaderByExample = checkCustomHeader(methods, customHeaderName);
-const checkCustomHeaderByExampleWithSpecificValue = checkCustomHeader(deleteMethod, customHeaderName, value);
+const checkCustomHeaderByExampleWithSpecificValue = checkCustomHeader(
+  deleteMethod,
+  customHeaderName,
+  value
+);
 
 describe('Check Custom Header', () => {
   it('passed with custom header', () => {
@@ -64,6 +68,8 @@ describe('Check Custom Header', () => {
 
   it('failed with incorrect custom header', () => {
     const origin = requestWithWrongCustomHeader;
-    expect(() => checkCustomHeaderByExampleWithSpecificValue(origin)).to.throw();
+    expect(() =>
+      checkCustomHeaderByExampleWithSpecificValue(origin)
+    ).to.throw();
   });
 });

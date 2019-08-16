@@ -23,7 +23,7 @@ fs.readFile(
 
     // lmost the same as writeFile, except that if the directory does not exist, it's created.
     fs.outputFile('./test-file/output/dist.yaml', data, () => {
-      console.log('Copy paste')
+      console.log('Copy paste');
       return;
     });
 
@@ -33,7 +33,7 @@ fs.readFile(
       './test-file/output/modified.yaml',
       YAML.stringify(modifiedDataObject),
       () => {
-        console.log('Modified by rules')
+        console.log('Modified by rules');
         return;
       }
     );
