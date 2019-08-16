@@ -7,8 +7,8 @@ const inputFilePath = './test-files/source.yaml';
 const outputFilePath = './test-files/output/modified.yaml';
 
 
-describe('Add Timestamp', () => {
-  it('check timestamp format', () => {
+describe('Test file IO with YAML format', () => {
+  it('successful case', () => {
     expect(()=>handleYAML(inputFilePath, outputFilePath)).to.not.throw();
   });
 

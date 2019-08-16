@@ -7,8 +7,8 @@ const inputFilePath = './test-files/source.json';
 const outputFilePath = './test-files/output/modified.json';
 
 
-describe('Add Timestamp', () => {
-  it('check timestamp format', () => {
+describe('Test file IO with JSON format', () => {
+  it('successful case', () => {
     expect(()=>handleJSON(inputFilePath, outputFilePath)).to.not.throw();
   });
 
