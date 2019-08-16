@@ -4,6 +4,6 @@
   "headers": {
     "Cookie": "sbcookie=test; area=taiwan",
     "Host": "www.shopback.com",
-    "Referer": "http: //www.shopback.com/"
+    "Referer": "http://www.shopback.com/"
   }
 }
