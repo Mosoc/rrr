@@ -17,6 +17,9 @@ coverage
 # Dependency directory
 node_modules
 
+# Output from test files
+test-files/output/
+
 # Compiled output
 lib/
 dist/
