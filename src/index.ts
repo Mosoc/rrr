@@ -8,7 +8,7 @@ const RequestRectifier = (
 ) => {
   switch (fileFormat.toLowerCase()) {
     case 'json': {
-      Files.handleYAML(inputFilePath, outputFilePath, callback);
+      Files.handleJSON(inputFilePath, outputFilePath, callback);
       break;
     }
     case 'yaml': {
