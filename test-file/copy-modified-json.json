@@ -1,1 +1,9 @@
-{"url":"http: //www.shopback.com/shopback/me","method":"GET","headers":{"Cookie":"sbcookie=test; area=taiwan","Host":"www.shopback.com","Referer":"http: //www.shopback.com/"},"description":"Test json file for fs"}
+{
+  "url": "https://www.shopback.com/shopback/me",
+  "method": "GET",
+  "headers": {
+    "Cookie": "sbcookie=test; area=taiwan",
+    "Host": "www.shopback.com",
+    "Referer": "http: //www.shopback.com/"
+  }
+}

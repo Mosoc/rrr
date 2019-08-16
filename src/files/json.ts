@@ -5,7 +5,6 @@ fs.readFile(
   './test-file/source.json',
   'utf-8',
   (error: NodeJS.ErrnoException, data: string) => {
-
     if (error) {
       console.log(error);
     }
@@ -23,12 +22,14 @@ fs.readFile(
 
     fs.outputFile(
       './test-file/copy-modified.json',
-      JSON.stringify(dataObject),
+      JSON.stringify(dataObject, null, 2),
       () => {
         return;
       }
     );
-    fs.outputJSON('./test-file/copy-modified-json.json', dataObject);
+    fs.outputJSON('./test-file/copy-modified-json.json', dataObject, {
+      spaces: 2
+    });
   }
 );
 

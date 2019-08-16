@@ -1,5 +1,5 @@
 {
-  "url": "http: //www.shopback.com/shopback/me",
+  "url": "http://www.shopback.com/shopback/me",
   "method": "GET",
   "headers": {
     "Cookie": "sbcookie=test; area=taiwan",
