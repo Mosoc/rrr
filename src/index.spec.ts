@@ -1,9 +1,12 @@
 import { expect } from 'chai';
-import RequestRectifier, { useDefaultRules } from './index';
+import { allMethods } from './constants';
+import RequestRectifier, { Rules, useDefaultRules } from './index';
 
 import 'mocha';
 
-const useCustomRules = RequestRectifier([]);
+const useCustomRules = RequestRectifier([
+  Rules.addTimestamp(allMethods, 'CUSTOM-TIMESTAMP')
+]);
 
 describe('Test file IO with all format', () => {
   it('successful case - JSON', () => {
