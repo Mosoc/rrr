@@ -8,6 +8,6 @@ const outputFilePath = 'test-files/output/modified.yaml';
 
 describe('Test file IO with YAML format', () => {
   it('successful case', () => {
-    expect(() => handleYAML(inputFilePath, outputFilePath)).to.not.throw();
+    expect(() => handleYAML()(inputFilePath, outputFilePath)).to.not.throw();
   });
 });

@@ -1,7 +1,8 @@
 import * as Files from './files';
 import * as Rules from './rules';
+import { RuleSet } from './types';
 
-const RequestRectifier = () => {
+const RequestRectifier = (ruleSet?: RuleSet) => {
   return (
     inputFilePath: string,
     outputFilePath: string,
@@ -10,11 +11,11 @@ const RequestRectifier = () => {
   ) => {
     switch (fileFormat.toLowerCase()) {
       case 'json': {
-        Files.handleJSON(inputFilePath, outputFilePath, callback);
+        Files.handleJSON(ruleSet)(inputFilePath, outputFilePath, callback);
         break;
       }
       case 'yaml': {
-        Files.handleYAML(inputFilePath, outputFilePath, callback);
+        Files.handleYAML(ruleSet)(inputFilePath, outputFilePath, callback);
         break;
       }
       default: {
@@ -32,11 +33,11 @@ const useDefaultRules = (
 ) => {
   switch (fileFormat.toLowerCase()) {
     case 'json': {
-      Files.handleJSON(inputFilePath, outputFilePath, callback);
+      Files.handleJSON()(inputFilePath, outputFilePath, callback);
       break;
     }
     case 'yaml': {
-      Files.handleYAML(inputFilePath, outputFilePath, callback);
+      Files.handleYAML()(inputFilePath, outputFilePath, callback);
       break;
     }
     default: {

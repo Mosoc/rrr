@@ -8,6 +8,6 @@ const outputFilePath = 'test-files/output/modified.json';
 
 describe('Test file IO with JSON format', () => {
   it('successful case', () => {
-    expect(() => handleJSON(inputFilePath, outputFilePath)).to.not.throw();
+    expect(() => handleJSON()(inputFilePath, outputFilePath)).to.not.throw();
   });
 });
