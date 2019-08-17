@@ -11,4 +11,8 @@
 (__\_)(____)\___) (__) (__)(__)  (__)(____)(__\_)
 
 ```
-          
+The core concept of this project is use curry-like function-return-function to separate configuration part and execution part.
+
+## USAGE
+
+## BUILD-IN RULES
