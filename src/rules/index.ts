@@ -1,5 +1,5 @@
 import { allMethods as ALL } from '../constants';
-import { HttpRequestMethod, HttpRequestObject } from '../types';
+import { HttpRequestMethod, HttpRequestObject, RuleSet } from '../types';
 import compose from '../utils/compose';
 
 import addFromHeader from './addFromHeader';
@@ -20,10 +20,8 @@ const hostname = 'www.shopback.com';
 
 // I use compose function because I thought the rules priority order is 10 to 1.
 
-const defaultRulesConfiguration = (
-  input: HttpRequestObject
-): HttpRequestObject =>
-  compose(
+const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
+  return compose(
     // GET Method››
     modifyPath(GET, '/shopback/resource', '/shopback/static/assets'), // Rule #1
     checkCookie(GET, '/shopback/me', 'sbcookie'), // Rule #2
@@ -39,8 +37,16 @@ const defaultRulesConfiguration = (
     addTimestamp(ALL, 'X-SHOPBACK-TIMESTAMP', true), // Rule #9
     checkHostHeader(ALL, hostname) // Rule #10
   )(input);
+};
 
-export default defaultRulesConfiguration;
+const rulesConfiguration = (ruleSet?: RuleSet ) => (input: HttpRequestObject) => {
+  if (!ruleSet || ruleSet.length < 1) {
+    return defaultRules(input);
+  }
+  return defaultRules(input);
+};
+
+export default rulesConfiguration;
 export {
   addFromHeader,
   addTimestamp,

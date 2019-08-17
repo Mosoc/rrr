@@ -72,3 +72,7 @@ export interface HttpRequestObject {
   method: HttpRequestMethod;
   headers: HttpRequestHeaders;
 }
+
+export type RuleGenerator = () => (input: HttpRequestObject) => HttpRequestObject;
+export type Rule = (input: HttpRequestObject) => HttpRequestObject;
+export type RuleSet = Rule[];

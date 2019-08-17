@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { HttpRequestObject } from '../types';
-import defaultRulesConfiguration from './index';
+import rulesConfiguration from './index';
 
 import 'mocha';
 
@@ -14,10 +14,12 @@ const requestExample: HttpRequestObject = {
   }
 };
 
+const defaultRules = rulesConfiguration();
+
 describe('Check composed rules', () => {
   it('passed with correct cookie, referer, host header', () => {
     const origin = requestExample;
-    const result = defaultRulesConfiguration(origin);
+    const result = defaultRules(origin);
     expect(result).to.not.equal(origin);
   });
   /*

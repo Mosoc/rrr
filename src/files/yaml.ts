@@ -3,7 +3,7 @@
 import fs from 'fs-extra';
 import YAML from 'yaml';
 import { requestObjectTemplate } from '../constants';
-import defaultRulesConfiguration from '../rules';
+import rulesConfiguration from '../rules';
 
 const handleYAML = (
   inputFilePath: string,
@@ -11,8 +11,9 @@ const handleYAML = (
   callback: (obj: { error?: any }) => any = ({ error }) => {
     console.log(error);
   }
-) =>
-  fs.readFile(
+) => {
+  const defaultRules = rulesConfiguration();
+  return fs.readFile(
     inputFilePath,
     'utf-8',
     (error: NodeJS.ErrnoException, data: string) => {
@@ -22,7 +23,7 @@ const handleYAML = (
       }
 
       const dataObject = YAML.parse(data);
-      const modifiedDataObject = defaultRulesConfiguration({
+      const modifiedDataObject = defaultRules({
         ...requestObjectTemplate,
         ...dataObject
       });
@@ -43,5 +44,6 @@ const handleYAML = (
       );
     }
   );
+};
 
 export default handleYAML;

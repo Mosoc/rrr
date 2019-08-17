@@ -2,15 +2,17 @@
 
 import fs from 'fs-extra';
 import { requestObjectTemplate } from '../constants';
-import defaultRulesConfiguration from '../rules';
+import rulesConfiguration from '../rules';
+
 const handleJSON = (
   inputFilePath: string,
   outputFilePath: string,
   callback: (obj: { error?: any }) => any = ({ error }) => {
     console.log(error);
   }
-) =>
-  fs.readFile(
+) => {
+  const defaultRules = rulesConfiguration();
+  return fs.readFile(
     inputFilePath,
     'utf-8',
     (error: NodeJS.ErrnoException, data: string) => {
@@ -20,7 +22,7 @@ const handleJSON = (
 
       const dataObject = JSON.parse(data);
 
-      const modifiedDataObject = defaultRulesConfiguration({
+      const modifiedDataObject = defaultRules({
         ...requestObjectTemplate,
         ...dataObject
       });
@@ -38,5 +40,6 @@ const handleJSON = (
       );
     }
   );
+};
 
 export default handleJSON;
