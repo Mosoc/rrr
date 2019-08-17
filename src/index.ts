@@ -9,7 +9,7 @@ const RequestRectifier = (ruleSet?: RuleSet, reversed: boolean = false) => {
     inputFilePath: string,
     outputFilePath: string,
     fileFormat: string = 'json', // Use JSON format as default
-    callback?: (obj: { error?: any }) => any
+    callback?: (obj: { error?: any; result?: any }) => any
   ) => {
     switch (fileFormat.toLowerCase()) {
       case 'json': {

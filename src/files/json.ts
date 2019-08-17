@@ -10,7 +10,7 @@ const handleJSON = (ruleSet?: RuleSet, reversed: boolean = false) => {
   return (
     inputFilePath: string,
     outputFilePath: string,
-    callback: (obj: { error?: any }) => any = ({ error }) => {
+    callback: (obj: { error?: any; result?: any }) => any = ({ error }) => {
       console.log(error);
     }
   ) => {

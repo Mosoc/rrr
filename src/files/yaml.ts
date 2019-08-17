@@ -11,7 +11,7 @@ const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
   return (
     inputFilePath: string,
     outputFilePath: string,
-    callback: (obj: { error?: any }) => any = ({ error }) => {
+    callback: (obj: { error?: any; result?: any }) => any = ({ error }) => {
       console.log(error);
     }
   ) => {
@@ -20,7 +20,6 @@ const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
       'utf-8',
       (error: NodeJS.ErrnoException, data: string) => {
         if (error) {
-          console.log(error);
           callback({ error });
         }
 
@@ -38,7 +37,6 @@ const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
           YAML.stringify(modifiedDataObject),
           (err: Error) => {
             if (error) {
-              console.log(error);
               callback({ error: err });
             }
             return;
