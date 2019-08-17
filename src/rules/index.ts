@@ -18,8 +18,8 @@ const DELETE: HttpRequestMethod[] = ['DELETE'];
 
 const hostname = 'www.shopback.com';
 
-// I use compose function because I thought the rules priority order is 10 to 1.
-
+// Do nothing but return the original value, use for edge case:
+// Get the ruleSet = []
 const noop = (input: HttpRequestObject) => input;
 
 const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
@@ -39,6 +39,8 @@ const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
     addTimestamp(ALL, 'X-SHOPBACK-TIMESTAMP', true), // Rule #9
     checkHostHeader(ALL, hostname) // Rule #10
   ];
+
+  // I use compose function because I thought the rules priority order is 10 to 1.
   const composedRules = compose<HttpRequestObject>(noop, ...ruleSet);
   return composedRules(input);
 };
@@ -46,10 +48,12 @@ const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
 const rulesConfiguration = (ruleSet?: RuleSet) => (
   input: HttpRequestObject
 ) => {
-  if (!ruleSet || ruleSet.length < 1) {
+  if (!ruleSet) {
     return defaultRules(input);
   }
-  return defaultRules(input);
+
+  const customRules = compose<HttpRequestObject>(noop, ...ruleSet);
+  return customRules(input);
 };
 
 export default rulesConfiguration;

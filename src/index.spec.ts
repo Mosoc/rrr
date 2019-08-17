@@ -3,7 +3,7 @@ import RequestRectifier, { useDefaultRules } from './index';
 
 import 'mocha';
 
-const useCustomRules = RequestRectifier();
+const useCustomRules = RequestRectifier([]);
 
 describe('Test file IO with all format', () => {
   it('successful case - JSON', () => {
