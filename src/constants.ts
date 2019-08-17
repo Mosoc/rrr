@@ -13,7 +13,7 @@ export const allMethods: HttpRequestMethod[] = [
 ];
 
 export const requestObjectTemplate: HttpRequestObject = {
-  url: '',
+  url: 'https://example.com/',
   method: 'GET',
   headers: {}
 };
