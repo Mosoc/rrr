@@ -4,6 +4,7 @@ import { RuleSet } from './types';
 
 const RequestRectifier = (ruleSet?: RuleSet, reversed: boolean = false) => {
   const handleJSON = Files.handleJSON(ruleSet, reversed);
+  const handleXML = Files.handleXML(ruleSet, reversed);
   const handleYAML = Files.handleYAML(ruleSet, reversed);
   return (
     inputFilePath: string,
@@ -14,6 +15,10 @@ const RequestRectifier = (ruleSet?: RuleSet, reversed: boolean = false) => {
     switch (fileFormat.toLowerCase()) {
       case 'json': {
         handleJSON(inputFilePath, outputFilePath, callback);
+        break;
+      }
+      case 'xml': {
+        handleXML(inputFilePath, outputFilePath, callback);
         break;
       }
       case 'yaml': {

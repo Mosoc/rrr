@@ -28,6 +28,14 @@ describe('Test file IO with all format', () => {
     ).to.not.throw();
   });
 
+  it('successful case - XML', () => {
+    const inputFilePath = 'test-files/source.xml';
+    const outputFilePath = 'test-files/output/intregration.xml';
+    expect(() =>
+      RequestRectifier()(inputFilePath, outputFilePath, 'xml')
+    ).to.not.throw();
+  });
+
   it('successful case - YAML', () => {
     const inputFilePath = 'test-files/source.yaml';
     const outputFilePath = 'test-files/output/intregration.yaml';
@@ -41,6 +49,14 @@ describe('Test file IO with all format', () => {
     const outputFilePath = 'test-files/output/intregration-default.json';
     expect(() =>
       useDefaultRules(inputFilePath, outputFilePath, 'json')
+    ).to.not.throw();
+  });
+
+  it('successful case - useDefaultRules - XML', () => {
+    const inputFilePath = 'test-files/source.xml';
+    const outputFilePath = 'test-files/output/intregration-default.xml';
+    expect(() =>
+      useDefaultRules(inputFilePath, outputFilePath, 'xml')
     ).to.not.throw();
   });
 
@@ -60,6 +76,15 @@ describe('Test file IO with all format', () => {
     ).to.not.throw();
   });
 
+  it('successful case - useCustomRules - XML', () => {
+    const inputFilePath = 'test-files/source.xml';
+    const outputFilePath = 'test-files/output/intregration-custom.xml';
+    expect(() =>
+      useCustomRules(inputFilePath, outputFilePath, 'xml')
+    ).to.not.throw();
+  });
+
+
   it('successful case - useCustomRules - YAML', () => {
     const inputFilePath = 'test-files/source.yaml';
     const outputFilePath = 'test-files/output/intregration-custom.yaml';
@@ -68,9 +93,28 @@ describe('Test file IO with all format', () => {
     ).to.not.throw();
   });
 
+  it('successful case - useCustomRules - JSON - reversed', () => {
+    const inputFilePath = 'test-files/source.json';
+    const outputFilePath =
+      'test-files/output/intregration-custom-reversed.json';
+    expect(() =>
+      useCustomRulesReverse(inputFilePath, outputFilePath, 'json')
+    ).to.not.throw();
+  });
+
+  it('successful case - useCustomRules - XML - reversed', () => {
+    const inputFilePath = 'test-files/source.xml';
+    const outputFilePath =
+      'test-files/output/intregration-custom-reversed.xml';
+    expect(() =>
+      useCustomRulesReverse(inputFilePath, outputFilePath, 'xml')
+    ).to.not.throw();
+  });
+
   it('successful case - useCustomRules - YAML - reversed', () => {
     const inputFilePath = 'test-files/source.yaml';
-    const outputFilePath = 'test-files/output/intregration-custom-reversed.yaml';
+    const outputFilePath =
+      'test-files/output/intregration-custom-reversed.yaml';
     expect(() =>
       useCustomRulesReverse(inputFilePath, outputFilePath, 'YAML')
     ).to.not.throw();

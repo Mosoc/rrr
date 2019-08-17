@@ -1,6 +1,7 @@
 import handleJSON from './json';
+import handleXML from './xml';
 import handleYAML from './yaml';
 
-// Here is just supported JSON and YAML format right now.
+// Here is just supported JSON, XML and YAML format right now.
 
-export { handleJSON, handleYAML };
+export { handleJSON, handleXML, handleYAML };
