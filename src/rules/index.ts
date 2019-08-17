@@ -20,9 +20,11 @@ const hostname = 'www.shopback.com';
 
 // I use compose function because I thought the rules priority order is 10 to 1.
 
+const noop = (input: HttpRequestObject) => input;
+
 const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
-  return compose(
-    // GET Method››
+  const ruleSet: RuleSet = [
+    // GET Method
     modifyPath(GET, '/shopback/resource', '/shopback/static/assets'), // Rule #1
     checkCookie(GET, '/shopback/me', 'sbcookie'), // Rule #2
     checkRefererHeader(GET, hostname), // Rule #3
@@ -36,10 +38,14 @@ const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
     // All Methods
     addTimestamp(ALL, 'X-SHOPBACK-TIMESTAMP', true), // Rule #9
     checkHostHeader(ALL, hostname) // Rule #10
-  )(input);
+  ];
+  const composedRules = compose<HttpRequestObject>(noop, ...ruleSet);
+  return composedRules(input);
 };
 
-const rulesConfiguration = (ruleSet?: RuleSet ) => (input: HttpRequestObject) => {
+const rulesConfiguration = (ruleSet?: RuleSet) => (
+  input: HttpRequestObject
+) => {
   if (!ruleSet || ruleSet.length < 1) {
     return defaultRules(input);
   }
