@@ -1,4 +1,5 @@
 import * as Files from './files';
+import * as Rules from './rules';
 
 const RequestRectifier = (
   inputFilePath: string,
@@ -22,4 +23,4 @@ const RequestRectifier = (
 };
 
 export default RequestRectifier;
-export { Files };
+export { Files, Rules };
