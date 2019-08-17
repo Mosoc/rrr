@@ -73,6 +73,8 @@ export interface HttpRequestObject {
   headers: HttpRequestHeaders;
 }
 
-export type RuleGenerator = () => (input: HttpRequestObject) => HttpRequestObject;
+export type RuleGenerator = () => (
+  input: HttpRequestObject
+) => HttpRequestObject;
 export type Rule = (input: HttpRequestObject) => HttpRequestObject;
 export type RuleSet = Rule[];

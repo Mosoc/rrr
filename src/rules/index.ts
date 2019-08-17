@@ -52,17 +52,22 @@ const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
   return composedRules(input);
 };
 
-const rulesConfiguration = (ruleSet?: RuleSet) => (
+const rulesConfiguration = (ruleSet?: RuleSet, reversed: boolean = false) => (
   input: HttpRequestObject
 ) => {
   if (!ruleSet) {
     return defaultRules(input);
   }
 
-  const customRules = compose<HttpRequestObject>(
-    noop,
-    ...ruleSet
-  );
+  const customRules = reversed
+    ? compose<HttpRequestObject>(
+        noop,
+        ...ruleSet
+      )
+    : pipe<[HttpRequestObject], HttpRequestObject>(
+        noop,
+        ...ruleSet
+      );
   return customRules(input);
 };
 

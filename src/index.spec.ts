@@ -5,8 +5,19 @@ import RequestRectifier, { Rules, useDefaultRules } from './index';
 import 'mocha';
 
 const useCustomRules = RequestRectifier([
-  Rules.addTimestamp(allMethods, 'CUSTOM-TIMESTAMP')
+  Rules.addTimestamp(allMethods, 'CUSTOM-1-TIMESTAMP'),
+  Rules.addTimestamp(allMethods, 'CUSTOM-2-TIMESTAMP'),
+  Rules.addTimestamp(allMethods, 'CUSTOM-3-TIMESTAMP')
 ]);
+
+const useCustomRulesReverse = RequestRectifier(
+  [
+    Rules.addTimestamp(allMethods, 'CUSTOM-1-TIMESTAMP'),
+    Rules.addTimestamp(allMethods, 'CUSTOM-2-TIMESTAMP'),
+    Rules.addTimestamp(allMethods, 'CUSTOM-3-TIMESTAMP')
+  ],
+  true
+);
 
 describe('Test file IO with all format', () => {
   it('successful case - JSON', () => {
@@ -54,6 +65,14 @@ describe('Test file IO with all format', () => {
     const outputFilePath = 'test-files/output/intregration-custom.yaml';
     expect(() =>
       useCustomRules(inputFilePath, outputFilePath, 'YAML')
+    ).to.not.throw();
+  });
+
+  it('successful case - useCustomRules - YAML - reversed', () => {
+    const inputFilePath = 'test-files/source.yaml';
+    const outputFilePath = 'test-files/output/intregration-custom-reversed.yaml';
+    expect(() =>
+      useCustomRulesReverse(inputFilePath, outputFilePath, 'YAML')
     ).to.not.throw();
   });
 });

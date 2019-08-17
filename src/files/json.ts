@@ -5,7 +5,8 @@ import { requestObjectTemplate } from '../constants';
 import rulesConfiguration from '../rules';
 import { RuleSet } from '../types';
 
-const handleJSON = (ruleSet?: RuleSet) => {
+const handleJSON = (ruleSet?: RuleSet, reversed: boolean = false) => {
+  const useRules = rulesConfiguration(ruleSet, reversed);
   return (
     inputFilePath: string,
     outputFilePath: string,
@@ -13,7 +14,6 @@ const handleJSON = (ruleSet?: RuleSet) => {
       console.log(error);
     }
   ) => {
-    const useRules = rulesConfiguration(ruleSet);
     return fs.readFile(
       inputFilePath,
       'utf-8',

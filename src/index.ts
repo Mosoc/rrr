@@ -2,9 +2,9 @@ import * as Files from './files';
 import * as Rules from './rules';
 import { RuleSet } from './types';
 
-const RequestRectifier = (ruleSet?: RuleSet) => {
-  const handleJSON = Files.handleJSON(ruleSet);
-  const handleYAML = Files.handleYAML(ruleSet);
+const RequestRectifier = (ruleSet?: RuleSet, reversed: boolean = false) => {
+  const handleJSON = Files.handleJSON(ruleSet, reversed);
+  const handleYAML = Files.handleYAML(ruleSet, reversed);
   return (
     inputFilePath: string,
     outputFilePath: string,

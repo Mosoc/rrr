@@ -6,8 +6,8 @@ import { requestObjectTemplate } from '../constants';
 import rulesConfiguration from '../rules';
 import { RuleSet } from '../types';
 
-const handleYAML = (ruleSet?: RuleSet) => {
-  const useRules = rulesConfiguration(ruleSet);
+const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
+  const useRules = rulesConfiguration(ruleSet, reversed);
   return (
     inputFilePath: string,
     outputFilePath: string,
