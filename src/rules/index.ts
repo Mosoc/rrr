@@ -1,6 +1,7 @@
 import { allMethods as ALL } from '../constants';
 import { HttpRequestMethod, HttpRequestObject, RuleSet } from '../types';
 import compose from '../utils/compose';
+import pipe from '../utils/pipe';
 
 import addFromHeader from './addFromHeader';
 import addTimestamp from './addTimestamp';
@@ -40,8 +41,14 @@ const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
     checkHostHeader(ALL, hostname) // Rule #10
   ];
 
-  // I use compose function because I thought the rules priority order is 10 to 1.
-  const composedRules = compose<HttpRequestObject>(noop, ...ruleSet);
+  // I used "compose" function because I thought the rules priority order is 10 to 1.
+  // but using pipe as default seems more intuitive
+
+  const composedRules = pipe<[HttpRequestObject], HttpRequestObject>(
+    noop,
+    ...ruleSet
+  );
+  // const composedRules = compose<HttpRequestObject>(noop, ...ruleSet);
   return composedRules(input);
 };
 
@@ -52,7 +59,10 @@ const rulesConfiguration = (ruleSet?: RuleSet) => (
     return defaultRules(input);
   }
 
-  const customRules = compose<HttpRequestObject>(noop, ...ruleSet);
+  const customRules = compose<HttpRequestObject>(
+    noop,
+    ...ruleSet
+  );
   return customRules(input);
 };
 
