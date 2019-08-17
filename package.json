@@ -28,6 +28,7 @@
   "license": "ISC",
   "readmeFilename": "README.md",
   "dependencies": {
+    "fast-xml-parser": "^3.12.20",
     "fs-extra": "^8.1.0",
     "micromatch": "^4.0.2",
     "yaml": "^1.6.0"
