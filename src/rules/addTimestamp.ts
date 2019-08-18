@@ -4,24 +4,27 @@ const addTimestamp = (
   methods: HttpRequestMethod[],
   timestampName: string,
   overwrite: boolean = false
-) => (input: HttpRequestObject): HttpRequestObject => {
-  const timestamp = new Date().toISOString();
-  if (!methods.includes(input.method)) {
-    return input;
-  }
+) => {
+  return (input: HttpRequestObject): HttpRequestObject => {
 
-  if (!overwrite && input.headers.hasOwnProperty(timestampName)) {
-    return input;
-  }
-
-  const output = {
-    ...input,
-    headers: {
-      ...input.headers,
-      [timestampName]: timestamp
+    if (!methods.includes(input.method)) {
+      return input;
     }
+
+    if (!overwrite && input.headers.hasOwnProperty(timestampName)) {
+      return input;
+    }
+
+    const timestamp = new Date().toISOString();
+    const output = {
+      ...input,
+      headers: {
+        ...input.headers,
+        [timestampName]: timestamp
+      }
+    };
+    return output;
   };
-  return output;
 };
 
 export default addTimestamp;
