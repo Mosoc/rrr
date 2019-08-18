@@ -9,4 +9,9 @@ describe('Test file IO with JSON format', () => {
     const outputFilePath = 'test-files/output/modified.json';
     expect(() => handleJSON()(inputFilePath, outputFilePath)).to.not.throw();
   });
+  it('failed case - empty input file path', () => {
+    const inputFilePath = '';
+    const outputFilePath = 'test-files/output/modified.json';
+    expect(() => handleJSON()(inputFilePath, outputFilePath)).to.throw();
+  });
 });

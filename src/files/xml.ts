@@ -22,6 +22,12 @@ const handleXML = (ruleSet?: RuleSet, reversed: boolean = false) => {
       console.log(error);
     }
   ) => {
+    if (!inputFilePath) {
+      throw Error('Input file path cannot be empty.');
+    }
+    if (!outputFilePath) {
+      throw Error('Output file path ile path cannot be empty.');
+    }
     return fs.readFile(
       inputFilePath,
       'utf-8',
