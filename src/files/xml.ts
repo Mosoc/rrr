@@ -30,15 +30,17 @@ const handleXML = (ruleSet?: RuleSet, reversed: boolean = false) => {
         }
 
         const dataObject = XML.parse(data);
+
+        const rootKey = Object.keys(dataObject)[0];
         const modifiedDataObject = useRules({
           ...requestObjectTemplate,
-          ...dataObject.request
+          ...dataObject[rootKey]
         });
 
         // Almost the same as writeFile, except that if the directory does not exist, it's created.
         fs.outputFile(
           outputFilePath,
-          toXML.parse({ request: modifiedDataObject }),
+          toXML.parse({ [rootKey]: modifiedDataObject }),
           (err: Error) => {
             if (error) {
               callback({ error: err });
