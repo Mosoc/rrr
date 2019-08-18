@@ -28,7 +28,17 @@ yarn run build
 - build/module is for enivoronment with build system(like babel).
 - build/main is for any runtime(es5).
 
-copy, rename and move to where your need, and import it as below example (rename to request-rectifier):
+Copy, rename and move to where your need, and import it as below example (rename to request-rectifier):
+
+> Attention: this module has some dependencies, please make sure you install in your environment.
+``` JSON
+{
+    "fast-xml-parser": "^3.12.20",
+    "fs-extra": "^8.1.0",
+    "micromatch": "^4.0.2",
+    "yaml": "^1.6.0"
+}
+```
 
 ```js
 const RequestRectifier = required('./request-rectifier').default;
