@@ -29,8 +29,6 @@ const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
           ...dataObject
         });
 
-        dataObject.description = 'Test json file for fs';
-
         // Almost the same as writeFile, except that if the directory does not exist, it's created.
         fs.outputFile(
           outputFilePath,
