@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import { requestObjectTemplate } from '../constants';
 import rulesConfiguration from '../rules';
 import { RuleSet } from '../types';
+import isHttpRequestObject from './isHttpRequestObject';
 
 const toXML = new XML.j2xParser({
   format: true,
@@ -32,6 +33,11 @@ const handleXML = (ruleSet?: RuleSet, reversed: boolean = false) => {
         const dataObject = XML.parse(data);
 
         const rootKey = Object.keys(dataObject)[0];
+
+        if (!rootKey || !isHttpRequestObject(dataObject[rootKey])) {
+          throw TypeError(`Data from ${inputFilePath} is invalid.`);
+        }
+
         const modifiedDataObject = useRules({
           ...requestObjectTemplate,
           ...dataObject[rootKey]

@@ -4,6 +4,7 @@ import fs from 'fs-extra';
 import { requestObjectTemplate } from '../constants';
 import rulesConfiguration from '../rules';
 import { RuleSet } from '../types';
+import isHttpRequestObject from './isHttpRequestObject';
 
 const handleJSON = (ruleSet?: RuleSet, reversed: boolean = false) => {
   const useRules = rulesConfiguration(ruleSet, reversed);
@@ -23,7 +24,9 @@ const handleJSON = (ruleSet?: RuleSet, reversed: boolean = false) => {
         }
 
         const dataObject = JSON.parse(data);
-
+        if (!isHttpRequestObject(dataObject)) {
+          throw TypeError(`Data from ${inputFilePath} is invalid.`);
+        }
         const modifiedDataObject = useRules({
           ...requestObjectTemplate,
           ...dataObject

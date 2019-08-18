@@ -5,6 +5,7 @@ import YAML from 'yaml';
 import { requestObjectTemplate } from '../constants';
 import rulesConfiguration from '../rules';
 import { RuleSet } from '../types';
+import isHttpRequestObject from './isHttpRequestObject';
 
 const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
   const useRules = rulesConfiguration(ruleSet, reversed);
@@ -24,6 +25,11 @@ const handleYAML = (ruleSet?: RuleSet, reversed: boolean = false) => {
         }
 
         const dataObject = YAML.parse(data);
+
+        if (!isHttpRequestObject(dataObject)) {
+          throw TypeError(`Data from ${inputFilePath} is invalid.`);
+        }
+
         const modifiedDataObject = useRules({
           ...requestObjectTemplate,
           ...dataObject
