@@ -6,7 +6,7 @@ import 'mocha';
 
 const methods: HttpRequestMethod[] = ['GET'];
 const selectedPath = '/shopback/resource';
-const distinationPath = '/shopback/static/assets';
+const destinationPath = '/shopback/static/assets';
 
 const requestWithMathedPath: HttpRequestObject = {
   url: 'http://www.shopback.com/shopback/resource',
@@ -26,14 +26,14 @@ const requestWithMathedPathButDifferentMethod: HttpRequestObject = {
   headers: {}
 };
 
-const modifyPathByExample = modifyPath(methods, selectedPath, distinationPath);
+const modifyPathByExample = modifyPath(methods, selectedPath, destinationPath);
 
 describe('Modify Path', () => {
   it('should modify the path', () => {
     const origin = requestWithMathedPath;
     const result = modifyPathByExample(origin);
     const url = new URL(result.url);
-    expect(url.pathname).to.equal(distinationPath);
+    expect(url.pathname).to.equal(destinationPath);
   });
 
   it('should bypass the object with unmatched path', () => {

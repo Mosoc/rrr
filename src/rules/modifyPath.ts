@@ -4,11 +4,11 @@ import { HttpRequestMethod, HttpRequestObject } from '../types';
 const modifyPath = (
   methods: HttpRequestMethod[],
   selectedPath: string,
-  distinationPath: string
+  destinationPath: string
 ) => {
   const isMatch = micromatch.matcher(selectedPath);
   return (input: HttpRequestObject): HttpRequestObject => {
-    if (selectedPath === distinationPath) {
+    if (selectedPath === destinationPath) {
       return input;
     }
 
@@ -21,7 +21,7 @@ const modifyPath = (
       return input;
     }
 
-    url.pathname = distinationPath;
+    url.pathname = destinationPath;
     const output = { ...input, url: url.href };
     return output;
   };
