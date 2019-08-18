@@ -19,6 +19,7 @@ node_modules
 
 # Output from test files
 test-files/output/
+example/**/test-files/output/
 
 # Compiled output
 lib/

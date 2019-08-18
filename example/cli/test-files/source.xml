@@ -1,0 +1,9 @@
+<request>
+  <url>http://www.shopback.com/shopback/me</url>
+  <method>GET</method>
+  <headers>
+    <Cookie>sbcookie=test; area=taiwan</Cookie>
+    <Host>www.shopback.com</Host>
+    <Referer>http://www.shopback.com/</Referer>
+  </headers>
+</request>
