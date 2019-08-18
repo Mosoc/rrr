@@ -104,3 +104,6 @@ const addContentLanguageHeader = input => {
 };
 RequestRectifier([addContentLanguageHeader])(inputFilePath, outputFilePath, 'json');
 ```
+
+## API
+ref: [API.md](API.md)
