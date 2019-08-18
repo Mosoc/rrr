@@ -107,3 +107,60 @@ RequestRectifier([addContentLanguageHeader])(inputFilePath, outputFilePath, 'jso
 
 ## API
 reference: [API.md](API.md)
+
+
+## Support Data Format
+
+Each data format should have `url`, `method`, and `header` properties.
+* `url` should be able to parsed by WHATWG URL API.
+* `method` should be uppercase request method name.
+
+JSON
+```json
+{
+  "url": "http://www.shopback.com/shopback/me",
+  "method": "GET",
+  "headers": {
+    "Cookie": "sbcookie=test; area=taiwan",
+    "Host": "www.shopback.com",
+    "Referer": "http://www.shopback.com/"
+  }
+}
+```
+
+XML
+> Because XML should have a root element, you can use `<any>` as root tag.
+```xml
+<request>
+  <url>http://www.shopback.com/shopback/me</url>
+  <method>GET</method>
+  <headers>
+    <Cookie>sbcookie=test; area=taiwan</Cookie>
+    <Host>www.shopback.com</Host>
+    <Referer>http://www.shopback.com/</Referer>
+  </headers>
+</request>
+```
+
+```xml
+<req>
+  <url>http://www.shopback.com/shopback/me</url>
+  <method>GET</method>
+  <headers>
+    <Cookie>sbcookie=test; area=taiwan</Cookie>
+    <Host>www.shopback.com</Host>
+    <Referer>http://www.shopback.com/</Referer>
+  </headers>
+</req>
+```
+
+YAML
+```yaml
+url: http://www.shopback.com/shopback/me
+method: GET
+headers:
+  Cookie: sbcookie=test; area=taiwan
+  Host: www.shopback.com
+  Referer: http://www.shopback.com/
+```
+
