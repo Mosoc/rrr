@@ -8,5 +8,5 @@ if (process.argv.length > 4) {
   const outputFilePath = argv[1];
   const fileFormat = argv[2];
 
-  RequestRectifier(inputFilePath, outputFilePath, fileFormat);
+  RequestRectifier()(inputFilePath, outputFilePath, fileFormat);
 }
