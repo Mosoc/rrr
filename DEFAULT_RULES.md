@@ -5,6 +5,10 @@
 
 Rule 1: Modify `url` from `/shopback/resource` to `/shopback/static/assets`
 
+```js
+Rules.modifyPath(['GET'], '/shopback/resource', '/shopback/static/assets');
+```
+
 > It seems this rule is used for redirection in migration from existing site to next.js project.
 
 **original**
@@ -27,6 +31,11 @@ Rule 1: Modify `url` from `/shopback/resource` to `/shopback/static/assets`
 
 Rule 2: Check cookies in header - If `sbcookie` don't exist, throw error.
 
+```js
+checkCookie(['GET'], '/shopback/me', 'sbcookie');
+```
+
+
 > Permission or session cookies
 
 **passed**
@@ -43,6 +52,10 @@ Rule 2: Check cookies in header - If `sbcookie` don't exist, throw error.
 
 Rule 3: Check Referer in header - Referer: "http(s)://www.shopback.com " or throw error.
 
+```js
+checkRefererHeader(['GET'], 'www.shopback.com');
+```
+
 > Block request without correct referer , it's a classic way to prevent our own images using in other sites.
 
 **passed**
@@ -58,6 +71,10 @@ Rule 3: Check Referer in header - Referer: "http(s)://www.shopback.com " or thro
 ```
 
 Rule 4: add `From` in header when request from `shopback/api/*`
+
+```js
+addFromHeader([GET], '/shopback/api/*', 'hello@shopback.com', true);
+```
 
 **original**
 
@@ -84,6 +101,10 @@ Rule 4: add `From` in header when request from `shopback/api/*`
 
 Rule 5: Clean up query string
 
+```js
+removeQueryString(['POST','PUT']),
+```
+
 **original**
 
 ```json
@@ -104,6 +125,10 @@ Rule 5: Clean up query string
 
 Rule 6: Check if X-SHOPBACK-AGENT is existed, or throw error
 
+```js
+checkCustomHeader(['POST','PUT'], 'X-SHOPBACK-AGENT')
+```
+
 **passed**
 
 ```json
@@ -118,6 +143,9 @@ Rule 6: Check if X-SHOPBACK-AGENT is existed, or throw error
 
 Rule 7: Content Type is `application/json`, or throw error
 
+```js
+checkContentTypeHeader(['POST','PUT'], 'application/json')
+```
 **passed**
 
 ```json
@@ -134,6 +162,10 @@ Rule 7: Content Type is `application/json`, or throw error
 
 Rule 8: `X-SHOPBACK-AGENT` should be specific value as AGENT_1, or throw error
 
+```js
+checkCustomHeader(['DELETE'], 'X-SHOPBACK-AGENT', 'AGENT_1')
+```
+
 **passed**
 
 ```json
@@ -149,6 +181,10 @@ Rule 8: `X-SHOPBACK-AGENT` should be specific value as AGENT_1, or throw error
 #### GENERAL RULES FOR ALL METHODS
 
 Rule 9: Add timestamp on `X-SHOPBACK-TIMESTAMP`
+
+```js
+addTimestamp(['CONNECT', 'DELETE', 'GET', 'HEAD', 'OPTIONS','PATCH', 'POST', 'PUT', 'TRACE'], 'X-SHOPBACK-TIMESTAMP', true)
+```
 
 > Should it be unix timestamp, or it can be other formats like ISO-8601 for human reading easily?
 
@@ -174,6 +210,10 @@ Rule 9: Add timestamp on `X-SHOPBACK-TIMESTAMP`
 ```
 
 Rule 10 `Host`in header is`www.shopback.com`, or throw error.
+
+```js
+checkHostHeader(['CONNECT', 'DELETE', 'GET', 'HEAD', 'OPTIONS','PATCH', 'POST', 'PUT', 'TRACE'], hostname)
+```
 
 **passed**
 
