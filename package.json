@@ -2,7 +2,7 @@
   "name": "request-rectifier",
   "description": "Modification of HTTP Requests",
   "private": true,
-  "version": "0.5.1",
+  "version": "0.5.2",
   "engines": {
     "node": ">=10"
   },
