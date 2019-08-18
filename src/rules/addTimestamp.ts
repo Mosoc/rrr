@@ -6,7 +6,6 @@ const addTimestamp = (
   overwrite: boolean = false
 ) => {
   return (input: HttpRequestObject): HttpRequestObject => {
-
     if (!methods.includes(input.method)) {
       return input;
     }

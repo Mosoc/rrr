@@ -10,7 +10,6 @@ const checkCookie = (
 ) => {
   const isMatch = micromatch.matcher(path);
   return (input: HttpRequestObject): HttpRequestObject => {
-
     if (!methods.includes(input.method)) {
       return input;
     }
