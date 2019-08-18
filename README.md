@@ -1,6 +1,6 @@
 # RequestRectifier
 
-> Modification of HTTP Requests
+> Modification of HTTP Requests from file IO.
 
 ```
  ____  ____  __   _  _  ____  ____  ____
@@ -13,8 +13,6 @@
 (__\_)(____)\___) (__) (__)(__)  (__)(____)(__\_)
 
 ```
-
-The core concept of this project is use scurry-like function-return-function to separate configuration part and execution part.
 
 ## Usage
 
@@ -51,7 +49,7 @@ Then,
 RequestRectifier()(inputFilePath, outputFilePath, fileFormat);
 ```
 
-You can some implementation in `/example`
+You can some implementation in `/examples`
 
 ### with Build-in rules
 
@@ -91,6 +89,8 @@ RequestRectifier(ruleset)(inputFilePath, outputFilePath, 'json');
 Actually, you can put your own custom rule function in rule set array
 The format of function should be `(input: HttpRequestObject) => HttpRequestObject;`
 
+Finally, You should take care of that the rule execute previously might involve following rules and results.
+
 ```js
 const addContentLanguageHeader = input => {
   const output = {
@@ -106,4 +106,4 @@ RequestRectifier([addContentLanguageHeader])(inputFilePath, outputFilePath, 'jso
 ```
 
 ## API
-ref: [API.md](API.md)
+reference: [API.md](API.md)
