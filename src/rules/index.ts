@@ -23,30 +23,30 @@ const hostname = 'www.shopback.com';
 // Get the ruleSet = []
 const noop = (input: HttpRequestObject) => input;
 
-const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
-  const ruleSet: RuleSet = [
-    // GET Method
-    modifyPath(GET, '/shopback/resource', '/shopback/static/assets'), // Rule #1
-    checkCookie(GET, '/shopback/me', 'sbcookie'), // Rule #2
-    checkRefererHeader(GET, hostname), // Rule #3
-    addFromHeader(GET, '/shopback/api/*', 'hello@shopback.com', true), // Rule #4
-    // POST/PUT Methods
-    removeQueryString(POST_AND_PUT),
-    checkCustomHeader(POST_AND_PUT, 'X-SHOPBACK-AGENT'), // #6
-    checkContentTypeHeader(POST_AND_PUT, 'application/json'), // #7
-    // DELETE Methods
-    checkCustomHeader(DELETE, 'X-SHOPBACK-AGENT', 'AGENT_1'), // #8
-    // All Methods
-    addTimestamp(ALL, 'X-SHOPBACK-TIMESTAMP', true), // Rule #9
-    checkHostHeader(ALL, hostname) // Rule #10
-  ];
+const defaultRuleSet: RuleSet = [
+  // GET Method
+  modifyPath(GET, '/shopback/resource', '/shopback/static/assets'), // Rule #1
+  checkCookie(GET, '/shopback/me', 'sbcookie'), // Rule #2
+  checkRefererHeader(GET, hostname), // Rule #3
+  addFromHeader(GET, '/shopback/api/*', 'hello@shopback.com', true), // Rule #4
+  // POST/PUT Methods
+  removeQueryString(POST_AND_PUT),
+  checkCustomHeader(POST_AND_PUT, 'X-SHOPBACK-AGENT'), // #6
+  checkContentTypeHeader(POST_AND_PUT, 'application/json'), // #7
+  // DELETE Methods
+  checkCustomHeader(DELETE, 'X-SHOPBACK-AGENT', 'AGENT_1'), // #8
+  // All Methods
+  addTimestamp(ALL, 'X-SHOPBACK-TIMESTAMP', true), // Rule #9
+  checkHostHeader(ALL, hostname) // Rule #10
+];
 
+const defaultRules = (input: HttpRequestObject): HttpRequestObject => {
   // I used "compose" function because I thought the rules priority order is 10 to 1.
   // but using pipe as default seems more intuitive
 
   const composedRules = pipe<[HttpRequestObject], HttpRequestObject>(
     noop,
-    ...ruleSet
+    ...defaultRuleSet
   );
   // const composedRules = compose<HttpRequestObject>(noop, ...ruleSet);
   return composedRules(input);
@@ -82,3 +82,5 @@ export {
   modifyPath,
   removeQueryString
 };
+
+export { defaultRuleSet };
