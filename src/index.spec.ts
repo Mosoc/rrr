@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { allMethods } from './constants';
 import RequestRectifier, { Rules, useDefaultRules } from './index';
+import { HttpRequestObject } from './types';
 
 import 'mocha';
 
@@ -18,6 +19,19 @@ const useCustomRulesReverse = RequestRectifier(
   ],
   true
 );
+
+const addContentLanguageHeader = (input: HttpRequestObject) => {
+  const output = {
+    ...input,
+    headers: {
+      ...input.headers,
+      'Content-Language': 'en-US, de-DU'
+    }
+  };
+  return output;
+};
+
+const userDefinedRules = RequestRectifier([addContentLanguageHeader]);
 
 describe('Test file IO with all format', () => {
   it('successful case - JSON', () => {
@@ -84,7 +98,6 @@ describe('Test file IO with all format', () => {
     ).to.not.throw();
   });
 
-
   it('successful case - useCustomRules - YAML', () => {
     const inputFilePath = 'test-files/source.yaml';
     const outputFilePath = 'test-files/output/intregration-custom.yaml';
@@ -105,7 +118,7 @@ describe('Test file IO with all format', () => {
   it('successful case - useCustomRules - XML - reversed', () => {
     const inputFilePath = 'test-files/source.xml';
     const outputFilePath =
-      'test-files/output/intregration-custom-reversed.xml';
+      'test-files/output/intregration-custom--reversed.xml';
     expect(() =>
       useCustomRulesReverse(inputFilePath, outputFilePath, 'xml')
     ).to.not.throw();
@@ -117,6 +130,30 @@ describe('Test file IO with all format', () => {
       'test-files/output/intregration-custom-reversed.yaml';
     expect(() =>
       useCustomRulesReverse(inputFilePath, outputFilePath, 'YAML')
+    ).to.not.throw();
+  });
+
+  it('successful case - user defined - JSON', () => {
+    const inputFilePath = 'test-files/source.json';
+    const outputFilePath = 'test-files/output/intregration-user-defined.json';
+    expect(() =>
+      userDefinedRules(inputFilePath, outputFilePath, 'json')
+    ).to.not.throw();
+  });
+
+  it('successful case - user defined - XML', () => {
+    const inputFilePath = 'test-files/source.xml';
+    const outputFilePath = 'test-files/output/intregration-user-defined.xml';
+    expect(() =>
+      userDefinedRules(inputFilePath, outputFilePath, 'xml')
+    ).to.not.throw();
+  });
+
+  it('successful case - user defined - YAML', () => {
+    const inputFilePath = 'test-files/source.yaml';
+    const outputFilePath = 'test-files/output/intregration-user-defined.yaml';
+    expect(() =>
+      userDefinedRules(inputFilePath, outputFilePath, 'yaml')
     ).to.not.throw();
   });
 });
