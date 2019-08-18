@@ -18,7 +18,7 @@
     "test:lint": "tslint --project . && prettier \"src/**/*.ts\" --check",
     "test:unit": "mocha -r ts-node/register src/**/*.spec.ts",
     "test:compose": "mocha -r ts-node/register src/*.spec.ts",
-    "clean": "trash build"
+    "clean": "trash build test-files/output examples/**/test-files/output/"
   },
   "keywords": [
     "request",
